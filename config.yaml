@@ -1,0 +1,18 @@
+# 消息代理的地址，这里使用 redis 作为代理
+broker: redis://localhost:6379
+# 消息代理的默认队列名
+default_queue: "sms"
+# 消费者处理的结果代理
+result_backend: redis://localhost:6379
+# redis的配置
+redis:
+  max_idle: 3
+  max_active: 3
+  max_idle_timeout: 240
+  wait: true
+  read_timeout: 15
+  write_timeout: 15
+  connect_timeout: 15
+  normal_tasks_poll_period: 1000
+  delayed_tasks_poll_period: 500
+  delayed_tasks_key: "sms"
