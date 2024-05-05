@@ -12,15 +12,17 @@ import (
 // SayHello 定义任务
 func SayHello(args []string, sessionID string) (string, error) {
 	for _, arg := range args {
-		time.Sleep(time.Second * 10)
-		fmt.Println(arg)
+		//time.Sleep(time.Second * 10)
+		t := time.Now()
+		fmt.Println(arg, t.Format("02 January 2006 15:04"))
 	}
 	lock.RLock()
 	conn, exists := connections[sessionID]
 	lock.RUnlock()
 
 	if exists {
-		err := conn.WriteMessage(websocket.TextMessage, []byte("OK!!!!!!!!!!"))
+		t := time.Now()
+		err := conn.WriteMessage(websocket.TextMessage, []byte("OK!!!!!!!!!!"+t.Format("02 January 2006 15:04")))
 		if err != nil {
 			log.Println("Failed to send message:", err)
 		}
