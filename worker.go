@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// 完善GitHub表情
 // SayHello 定义任务
 func SayHello(args []string, sessionID string) (string, error) {
 	for _, arg := range args {
