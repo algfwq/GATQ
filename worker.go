@@ -20,6 +20,8 @@ func SayHello(args []string, sessionID string) (string, error) {
 	conn, exists := connections[sessionID]
 	lock.RUnlock()
 
+	time.Sleep(time.Second * 10)
+
 	if exists {
 		t := time.Now()
 		err := conn.WriteMessage(websocket.TextMessage, []byte("OK!!!!!!!!!!"+t.Format("02 January 2006 15:04")))

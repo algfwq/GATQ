@@ -118,15 +118,15 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		log.Println("收到消息，转为JSON：", receive)
 
 		if receive.Mode == "task" {
-			//// 下发任务给消费者
-			//signature := NewSumTaskSignature(receive.Arg, sessionID)
-			//_, err := server.SendTask(signature)
-			//if err != nil {
-			//	log.Fatal("下发任务失败：", err)
-			//}
+			// 下发任务给消费者
+			signature := NewSumTaskSignature(receive.Arg, sessionID)
+			_, err := server.SendTask(signature)
+			if err != nil {
+				log.Fatal("下发任务失败：", err)
+			}
 
 			//启动定时任务
-			go mainCron(receive.Arg, sessionID)
+			//go mainCron(receive.Arg, sessionID)
 
 			// 每秒获取一次消息队列中的结果
 			//res, err := asyncResult.Get(1)
